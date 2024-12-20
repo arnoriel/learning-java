@@ -1,66 +1,76 @@
-class Orang {
-    // Atribut private (Encapsulation)
-    private String nama;
-    private int umur;
+// Abstract Class
+abstract class Transportasi {
+    private String jenis;
 
-    // Constructor
-    Orang(String nama, int umur) {
-        this.nama = nama;
-        this.umur = umur;
+    Transportasi(String jenis) {
+        this.jenis = jenis;
     }
 
-    // Getter untuk nama
-    public String getNama() {
-        return nama;
+    public String getjenis() {
+        return jenis;
     }
 
-    // Setter untuk nama
-    public void setNama(String nama) {
-        this.nama = nama;
+    // Abstract Method (harus diimplementasikan oleh subclass)
+    public abstract void deskripsiTransportasi();
+
+    // Panggil JenisTransportasi
+    public void jenisTransportasi() {
+        System.out.println("Jenis Transportasi: " + jenis);
+    }
+}
+
+// Class Mobil (Subclass)
+class Mobil extends Transportasi {
+
+    Mobil(String jenis) {
+        super(jenis);
     }
 
-    // Getter untuk umur
-    public int getUmur() {
-        return umur;
+    @Override
+    public void deskripsiTransportasi() {
+        System.out.println("Mobil adalah kendaraan yang digunakan di jalan raya.");
+    }
+}
+
+// Class Sepeda (Subclass)
+class Sepeda extends Transportasi {
+
+    Sepeda(String jenis) {
+        super(jenis);
     }
 
-    // Setter untuk umur
-    public void setUmur(int umur) {
-        this.umur = umur;
+    @Override
+    public void deskripsiTransportasi() {
+        System.out.println("Sepeda adalah kendaraan yang digerakkan dengan pedal.");
+    }
+}
+
+// Class Pesawat (Subclass)
+class Pesawat extends Transportasi {
+
+    Pesawat(String jenis) {
+        super(jenis);
     }
 
-    // Method
-    public void perkenalkanDiri() {
-        System.out.println("Halo, nama saya " + nama + " dan saya berumur " + umur + " tahun.");
+    @Override
+    public void deskripsiTransportasi() {
+        System.out.println("Pesawat adalah kendaraan yang terbang di udara.");
     }
 }
 
 // Class Main
 public class Main {
     public static void main(String[] args) {
-        // Membuat object dengan constructor
-        Orang orang1 = new Orang("Arno", 30);
+        Transportasi Transportasi1 = new Mobil("Lamborghini Aventador");
+        Transportasi1.jenisTransportasi();
+        Transportasi1.deskripsiTransportasi();
 
-        // Mengakses atribut melalui getter
-        System.out.println("Nama sebelum diubah: " + orang1.getNama());
+        Transportasi Transportasi2 = new Sepeda("EVERGO");
+        Transportasi2.jenisTransportasi();
+        Transportasi2.deskripsiTransportasi();
 
-        // Mengubah atribut melalui setter
-        orang1.setNama("Arno Si Pembelajar");
-        orang1.setUmur(31);
-
-        // Memanggil method setelah perubahan
-        orang1.perkenalkanDiri();
-
-        Orang orang2 = new Orang("Ahmad", 32);
-
-        // Mengakses atribut melalui getter
-        System.out.println("Nama sebelum diubah: " + orang2.getNama());
-
-        // Mengubah atribut melalui setter
-        orang2.setNama("Ahmad Si Tekhnisi");
-        orang2.setUmur(33);
-
-        // Memanggil method setelah perubahan
-        orang2.perkenalkanDiri();
+        Transportasi Transportasi3 = new Pesawat("F22");
+        Transportasi3.jenisTransportasi();
+        Transportasi3.deskripsiTransportasi();
     }
 }
